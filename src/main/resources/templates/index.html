@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>community</title>
@@ -33,9 +34,9 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://github.com/login/oauth/authorize?client_id=f7011aa908398657eca0&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登入</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我 <span class="caret"></span></a>
+<!--                <div th:text="${session.user}"-->
+                <li class="dropdown" th:if="${session.user != null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">我</a></li>
                         <li><a href="#">信息中心</a></li>
@@ -44,6 +45,8 @@
                         <li><a href="#">something else here</a></li>
                     </ul>
                 </li>
+                <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=f7011aa908398657eca0&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登入</a></li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
