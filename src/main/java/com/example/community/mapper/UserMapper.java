@@ -9,8 +9,8 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into communitydata.user (name,account_id,token,gmt_create,gmt_modified) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified})")
+    @Insert("insert into community.user (name,account_id,token,gmt_create,gmt_modified) values (#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified})")
     void insert(User user);
-    @Select("select * from communitydata.user where token = #{token}")
+    @Select("select * from community.user where token = #{token}")
     User findByToken(@Param("token") String token);
 }
